@@ -4,7 +4,8 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 
-const QuestionRoutes = require("./routes/question.routes");
+const questionRoutes = require("./routes/question.routes");
+const indexRoutes = require("./routes/index.routes");
 
 mongoose
   .connect(process.env.MongoURI, {
@@ -20,7 +21,9 @@ mongoose
 
 
 app.use(bodyParser.json());
-app.use(QuestionRoutes);
+app.use(questionRoutes);
+app.use(indexRoutes);
+
 
 const PORT = process.env.PORT;
 app.listen(PORT, ()=>{
